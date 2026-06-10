@@ -1,0 +1,16 @@
+{
+  "name": "breedvault",
+  "version": "1.0.0",
+  "description": "BreedVault helps dog and cat owners track breed-specific health conditions,  manage breeding records, and stay on top of vaccinations and daily care.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "pg": "^8.21.0"
+  }
+}
