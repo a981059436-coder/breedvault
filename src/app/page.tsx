@@ -46,7 +46,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-amber-50" />
         <div className="relative mx-auto max-w-6xl px-6 text-center">
           <span className="inline-block rounded-full bg-indigo-100 px-4 py-1.5 text-xs font-semibold tracking-wide text-indigo-700">
-            🐾 15 breeds · 26 conditions · 44 care checklists
+            🐾 15 breeds · Detailed health data · Breeding tracker
           </span>
           <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
             Your breed&apos;s health, <span className="text-indigo-600">tracked like never before.</span>
