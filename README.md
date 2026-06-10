@@ -1,6 +1,6 @@
-# BreedVault — Multi-Breed Health Management Platform
+# PawPort — Multi-Breed Health Management Platform
 
-BreedVault helps dog and cat owners track breed-specific health conditions, 
+PawPort helps dog and cat owners track breed-specific health conditions, 
 manage breeding records, and stay on top of vaccinations and daily care.
 
 ## Quick Start

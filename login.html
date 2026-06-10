@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BreedVault - Sign In</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f9fafb;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.c{background:#fff;border-radius:16px;padding:32px;width:100%;max-width:400px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+h1{font-size:24px;font-weight:700;text-align:center;margin-bottom:24px}
+.l{font-size:14px;font-weight:500;color:#374151;margin-bottom:4px;display:block}
+input{width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:10px;font-size:14px;margin-bottom:16px}
+.b{width:100%;padding:12px;background:#4f46e5;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:8px}
+.b:hover{background:#4338ca}.b2{width:100%;padding:12px;background:#fff;color:#4f46e5;border:1px solid #4f46e5;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.e{background:#fef2f2;color:#dc2626;padding:12px;border-radius:8px;font-size:13px;margin-bottom:12px}
+.s{background:#f0fdf4;color:#16a34a;padding:12px;border-radius:8px;font-size:13px;margin-bottom:12px;word-break:break-all}
+</style></head><body>
+<div class="c"><h1>🐾 BreedVault</h1>
+<div id="m"></div>
+<div id="step1">
+<label class="l">Email</label><input type="email" id="email" value="a981059436@gmail.com">
+<label class="l">Password</label><input type="password" id="pw" value="BreedVault2026!">
+<button class="b" onclick="login()">Sign In</button>
+<button class="b2" onclick="signup()">Sign Up</button>
+</div>
+<div id="step2" style="display:none">
+<p style="text-align:center;font-size:14px;color:#6b7280;margin-bottom:16px">Logged in! Access token:</p>
+<div class="s" id="token"></div>
+<p style="text-align:center;margin-top:16px;font-size:13px;color:#6b7280">Copy this token. Then paste it below on the dashboard page.</p>
+</div>
+</div>
+
+<script>
+const API='https://ysbivovfehxqccvbjgbv.supabase.co';
+const AK='sb_publishable_znnJV108w3fxcDnMIqJTmA_ykXypPQs';
+
+function show(msg,cls){document.getElementById('m').innerHTML='<div class="'+cls+'">'+msg+'</div>'}
+
+async function login(){
+const e=document.getElementById('email').value;
+const p=document.getElementById('pw').value;
+const r=await fetch(API+'/auth/v1/token?grant_type=password',{
+method:'POST',headers:{'Content-Type':'application/json','apikey':AK},
+body:JSON.stringify({email:e,password:p})});
+const d=await r.json();
+if(d.error){show(d.error_description||d.error,'e');return}
+document.getElementById('step1').style.display='none';
+document.getElementById('step2').style.display='block';
+document.getElementById('token').textContent=d.access_token;
+show('✅ Login successful!','s');
+}
+
+async function signup(){
+const e=document.getElementById('email').value;
+const p=document.getElementById('pw').value;
+const r=await fetch(API+'/auth/v1/signup',{
+method:'POST',headers:{'Content-Type':'application/json','apikey':AK},
+body:JSON.stringify({email:e,password:p})});
+const d=await r.json();
+if(d.error){show(d.msg||d.error,'e');return}
+show('✅ Account created! Now click Sign In.','s');
+}
+</script></body></html>
