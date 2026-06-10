@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
 const URL = "https://ysbivovfehxqccvbjgbv.supabase.co";
-const KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzYml2b3ZmZWh4cWNjdmJqZ2J2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTA3OTgzNCwiZXhwIjoyMDk2NjU1ODM0fQ.idRVyU7yZjuF1pOQOKBKynj1Pc_IDNqPjS_s1nsfCsw";
+const KEY = "eyJhbG...fCsw";
 
 const BREEDS = [
   {"name":"Labrador Retriever","slug":"labrador-retriever","species":"dog","description":"The Labrador Retriever is the most popular dog breed in the US, UK, and Canada.","akc_group":"Sporting","origin":"Canada/UK","weight_male_kg_low":29,"weight_male_kg_high":36,"weight_female_kg_low":25,"weight_female_kg_high":32,"height_cm_low":55,"height_cm_high":62,"life_expectancy_years_low":10,"life_expectancy_years_high":14,"litter_size_avg":7,"gestation_days":63,"heat_cycle_days":180,"coat_colors":["black","yellow","chocolate"],"temperament":["friendly","active","outgoing"],"is_featured":true},
@@ -57,11 +57,11 @@ export async function GET() {
     (condsDb??[]).forEach((c:any)=>{condMap[c.slug]=c.id});
     
     // Insert breed_conditions
-    const bcData = CONDITIONS.map(r=>({breed_id:slugMap[r.breed_slug],condition_id:condMap[r.condition_slug],...r,breed_slug:undefined,condition_slug:undefined})).filter(r=>r.breed_id&&r.condition_id);
+    const bcData = CONDITIONS.map(r=>{const {breed_slug,condition_slug,...rest}=r;return{breed_id:slugMap[breed_slug],condition_id:condMap[condition_slug],...rest}}).filter((r:any)=>r.breed_id&&r.condition_id);
     if(bcData.length>0){const {error:e2}=await c.from("breed_conditions").upsert(bcData);if(e2)return NextResponse.json({error:"conditions: "+e2.message},{status:500})}
     
     // Insert checklists
-    const clData = CHECKLISTS.map(r=>({breed_id:slugMap[r.breed_slug],...r,breed_slug:undefined})).filter(r=>r.breed_id);
+    const clData = CHECKLISTS.map(r=>{const {breed_slug,...rest}=r;return{breed_id:slugMap[breed_slug],...rest}}).filter((r:any)=>r.breed_id);
     if(clData.length>0){const {error:e3}=await c.from("breed_checklists").upsert(clData);if(e3)return NextResponse.json({error:"checklists: "+e3.message},{status:500})}
     
     return NextResponse.json({message:`Seeded ${BREEDS.length} breeds, ${bcData.length} conditions, ${clData.length} checklists`});
