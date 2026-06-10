@@ -1,47 +1,36 @@
-# PawPort — Multi-Breed Health Management Platform
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-PawPort helps dog and cat owners track breed-specific health conditions, 
-manage breeding records, and stay on top of vaccinations and daily care.
+## Getting Started
 
-## Quick Start
+First, run the development server:
 
 ```bash
-# 1. Create a Supabase project at https://supabase.com (free tier)
-
-# 2. Deploy the database schema
-supabase link --project-ref <your-project-ref>
-supabase db push
-
-# 3. Seed breed data
-export SUPABASE_URL="https://xxxxx.supabase.co"
-export SUPABASE_SERVICE_KEY="eyJhbG..."  # service_role key from Supabase dashboard
-pip install supabase
-python supabase/seed/seed.py
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Data Layer
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-| File | Description | Rows |
-|------|-------------|------|
-| `migrations/001_init.sql` | Full database schema | — |
-| `seed/breeds.json` | 5 breeds (3 dogs + 2 cats) | 5 |
-| `seed/conditions.json` | 26 genetic/hereditary conditions | 26 |
-| `seed/breed_conditions.json` | Breed-disease mapping with prevalence rates | 35 |
-| `seed/breed_checklists.json` | Daily/weekly/monthly care items per breed | 47 |
-| `seed/vaccination_schedules.json` | Core + non-core vaccines (dog + cat) | 9 |
-| `seed/growth_curves.json` | Weight percentiles by breed/sex/age | 49 |
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Tech Stack
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- **Database**: Supabase (PostgreSQL)
-- **Frontend**: TBD (Next.js + TailwindCSS recommended)
-- **Deployment**: Vercel
-- **Payments**: Stripe
+## Learn More
 
-## Adding a New Breed
+To learn more about Next.js, take a look at the following resources:
 
-1. Add entry to `seed/breeds.json`
-2. Add condition mappings to `seed/breed_conditions.json`
-3. Add checklist items to `seed/breed_checklists.json`
-4. Add growth curve data to `seed/growth_curves.json`
-5. Re-run `python supabase/seed/seed.py`
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
