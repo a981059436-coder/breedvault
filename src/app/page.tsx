@@ -37,5 +37,5 @@ export default function HomePage() {
             <a href="#features" className="hover:text-indigo-600">Features</a>
             <a href="#breeds" className="hover:text-indigo-600">Breeds</a>
             <Link href="/pricing" className="hover:text-indigo-600">Pricing</Link>
+            <Link href="https://paypal.me/Ligb18" target="_blank" className="rounded-lg bg-amber-500 px-4 py-2 text-white hover:bg-amber-600 font-semibold">Upgrade $4.99</Link>
             <Link href="/dashboard" className="hover:text-indigo-600">Dashboard</Link>
-            <Link href="/login" className="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">Sign In</Link>
